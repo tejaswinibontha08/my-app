@@ -1,0 +1,125 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #121212; /* Deep black for cinematic look */
+    color: #f8e9a1; /* Warm golden color */
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.2); /* Golden soft glow */
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffcc00; /* Rich golden color */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.description {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 20px;
+    color: #d4af37; /* Softer gold */
+}
+
+.subTitle {
+    font-size: 1.5rem;
+    color: #ffae42; /* Warm sunset orange */
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.skillList {
+    list-style: none;
+    padding: 0;
+}
+
+.skillItem {
+    background: #1e1e1e; /* Dark grey */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    color: #ffcc00; /* Gold text */
+    font-weight: bold;
+}
+
+.postsContainer {
+    margin-top: 20px;
+}
+
+.postCard {
+    background: #1a1a1a; /* Rich black */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.15); /* Soft cinematic glow */
+}
+
+.postImage {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 3px solid rgba(255, 215, 0, 0.5); /* Cinematic golden border */
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #bbb; /* Soft grey */
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.textArea, .input, .fileInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #222; /* Dark grey */
+    color: #f8e9a1;
+}
+
+.textArea {
+    min-height: 100px;
+    resize: none;
+}
+
+.postButton {
+    background: #ffcc00; /* Golden */
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.postButton:hover {
+    background: #d4af37; /* Rich gold */
+    transform: scale(1.05);
+}
+
+.deleteButton {
+    background: #d32f2f; /* Cinematic red */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.deleteButton:hover {
+    background: #b71c1c; /* Deep red */
+    transform: scale(1.05);
+}
