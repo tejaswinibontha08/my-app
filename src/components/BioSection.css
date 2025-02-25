@@ -1,0 +1,149 @@
+.bio-container {
+    padding:10px;
+    margin-top: 12px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .bio-heading-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 8px;
+    padding: 4px 0;
+  }
+  
+  .bio-heading {
+    /* padding-left:10px; */
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 0;
+  }
+  
+  .bio-icons {
+    padding-right: 70px;
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .bio-heading-line:hover .bio-icons {
+    opacity: 1;
+  }
+  
+  .bio-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #6b7280;
+    transition: color 0.3s ease;
+  }
+  
+  .bio-icon:hover {
+    color: #1f2937;
+  }
+  
+  .bio-text {
+    width:700px;
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.5;
+    /* background-color: #f9fafb; */
+    /* padding: 12px; */
+    border-radius: 8px;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  
+  .add-bio-btn {
+    /* padding-left:10px; */
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-bio-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  .bio-popup {
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    width: 600px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    animation: popup-bubble 0.3s ease-out;
+    z-index: 10;
+  }
+  
+  @keyframes popup-bubble {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .bio-popup-textarea {
+    width: 100%;
+    height: 175px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    resize: none;
+    background-color: #f3f4f6;
+    outline: none;
+}
+  
+  .bio-popup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    gap: 8px;
+  }
+  
+  .btn-gradient {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #4f46e5, #3b82f6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(59, 130, 246, 0.4);
+  }
+  
+  .save-btn {
+    background-image: linear-gradient(to right, #3b82f6, #2563eb);
+  }
+  
+  .cancel-btn {
+    background-image: linear-gradient(to right, #ffffff, #f3f4f6);
+    color: #374151; /* Dark grey text for contrast */
+    border: 1px solid #d1d5db; /* Optional subtle border */
+  }
+  

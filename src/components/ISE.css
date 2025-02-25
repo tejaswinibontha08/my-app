@@ -1,0 +1,407 @@
+.ise-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Common section styles */
+  section {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  /* Standard Button Style */
+  .standard-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .standard-button:hover {
+    background-color: #084e96;
+  }
+  
+  /* Interests Section */
+  .selected-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  .interest-tag {
+    background: #f0f2f5;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    position: relative;
+    padding-right: 32px;
+  }
+  
+  .remove-interest {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+  }
+  
+  .remove-interest:hover {
+    color: #dc2626;
+  }
+  
+  .interest-selection-container {
+    margin-top: 20px;
+  }
+  
+  .interest-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .interest-option {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+  }
+  
+  .interest-option.selected {
+    background: #e8f0fe;
+    border-color: #0a66c2;
+    color: #0a66c2;
+  }
+  
+  .interest-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  /* Experience Section */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .experience-card {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+  }
+  
+  .experience-card:hover {
+    background-color: #f9fafb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .experience-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .experience-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .experience-details {
+    flex: 1;
+  }
+  
+  .experience-details h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #111827;
+  }
+  
+  .production-name {
+    font-size: 14px;
+    color: #4b5563;
+    margin: 0 0 4px 0;
+  }
+  
+  .date {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+  }
+  
+  .key-responsibilities {
+    font-size: 14px;
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+    white-space :pre-wrap;
+  }
+  
+  /* Skills Section */
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .skill-card {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .skill-card:hover {
+    background-color: #f9fafb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .skill-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .skill-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .skill-details {
+    flex: 1;
+  }
+  
+  .skill-details h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #111827;
+  }
+  
+  .skill-details p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    /* white-space :pre-wrap; */
+  }
+  
+  /* Edit Button */
+  .edit-btn {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;  
+  }
+  
+  .edit-btn:hover {
+    background-color: #f3f4f6;
+    color: #0a66c2;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .experience-modal,
+  .skills-modal {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-overlay h2 {
+    margin-bottom: 16px;
+    color: #111827;
+  }
+  
+  .modal-overlay input,
+  .modal-overlay textarea {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+  }
+  
+  .modal-overlay input:focus,
+  .modal-overlay textarea:focus {
+    outline: none;
+    border-color: #0a66c2;
+    box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.1);
+  }
+  
+  .date-inputs {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .date-inputs input {
+    flex: 1;
+  }
+  
+  .present-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .present-checkbox input[type="checkbox"] {
+    width: auto;
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .modal-buttons button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .modal-buttons button:first-child {
+    background: #3b82f6;
+    color: white;
+    border: none;
+  }
+  
+  .modal-buttons button:first-child:hover {
+    background: #084e96;
+  }
+  
+  .modal-buttons button:last-child {
+    background: white;
+    border: 1px solid #d1d5db;
+    color: #374151;
+  }
+  
+  .modal-buttons button:last-child:hover {
+    background: #f3f4f6;
+  }
+  
+  /* Save/Cancel Buttons for Interests */
+  .save-btn,
+  .cancel-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .save-btn {
+    background: #0a66c2;
+    color: white;
+    border: none;
+  }
+  
+  .save-btn:hover {
+    background: #084e96;
+  }
+  
+  .cancel-btn {
+    background: white;
+    border: 1px solid #d1d5db;
+    color: #374151;
+  }
+  
+  .cancel-btn:hover {
+    background: #f3f4f6;
+  }
+  .action-buttons {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  
+  .delete-btn {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .delete-btn:hover {
+    background-color: #f3f4f6;
+    color: #dc2626;
+  }

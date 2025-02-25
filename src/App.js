@@ -13,6 +13,10 @@ import SoundDesign from "./domain/SoundDesign";
 import VisualEffects from "./domain/VisualEffects";
 import CostumeDesign from "./domain/CostumeDesign";
 import FilmMusic from "./domain/FilmMusic";
+import Chat from "./Chat";
+
+import ProfilePage from './components/ProfilePage';
+import Navbar from './components/Navbar';
 
 function App() {
   const clientId = "81814304503-p9g82oi381oa5vv272o6rkn2dcbj2ggb.apps.googleusercontent.com"; // Replace with actual Client ID
@@ -37,6 +41,9 @@ function App() {
           <Route path="/domain/visualeffects" element={<VisualEffects />} />
           <Route path="/domain/costumedesign" element={<CostumeDesign />} />
           <Route path="/domain/filmmusic" element={<FilmMusic />} />
+          <Route path ="/Chat" element={<Chat />} />
+          <Route path="/components/ProfilePage" element={<ProfilePage />} />
+          <Route path="/components/Navbar" element={<Navbar />} />
         </Routes>
       </Router>
     </GoogleOAuthProvider>

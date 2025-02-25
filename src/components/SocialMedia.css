@@ -1,0 +1,160 @@
+.social-media-section {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+}
+
+.social-media-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.social-cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 8px;
+}
+
+/* Hide scrollbar but keep functionality */
+.social-cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.social-card {
+  flex: 0 0 170px;
+  background-color: white;
+  border: 2px solid var(--platform-color);
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative; /* Needed for absolute positioning of icons */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styles */
+.social-icon {
+  font-size: 1.5rem;
+  color: var(--platform-color);
+}
+
+/* Platform name */
+.platform-name {
+  font-size: 0.8rem;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* Input form for adding/editing links */
+.social-input-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.social-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: border-color 0.2s ease;
+}
+
+.social-input:focus {
+  outline: none;
+  border-color: var(--platform-color);
+}
+
+/* Buttons container (only appears on hover) */
+.social-buttons {
+  display: none; /* Initially hidden */
+  flex-direction: row;
+  gap: 8px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.social-card:hover .social-buttons {
+  display: flex; /* Show on hover */
+}
+
+/* Icon button styles */
+.social-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.1s ease;
+}
+
+.social-buttons button:hover {
+  transform: scale(1.2);
+}
+
+/* Button icon colors */
+.open-button {
+  color: #1DA1F2;
+}
+
+.edit-button {
+  color: #0A66C2;
+}
+
+.delete-button {
+  color: #E4405F;
+}
+/* Save Button - New Stylish Look */
+.save-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 20px; /* Smooth rounded corners */
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.save-button:hover {
+  background-color: #3b82f6; /* Darker green on hover */
+  transform: scale(1.05);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .social-cards-container {
+    gap: 12px;
+  }
+  
+  .social-card {
+    flex: 0 0 120px;
+    padding: 10px;
+  }
+
+  .social-media-section {
+    padding: 16px;
+  }
+}

@@ -11,7 +11,7 @@ const Cinematography = () => {
   const fileInputRef = useRef(null); // 🔥 Create ref for file input
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username") || "Guest";
+    const storedUsername = sessionStorage.getItem("username") || "Guest";
     setUsername(storedUsername);
 
     axios.get("http://localhost:5000/api/domains")
@@ -40,10 +40,12 @@ const Cinematography = () => {
     if (!newPost.content.trim() && !newPost.imageFile && !newPost.image) {
       return alert("Post cannot be empty!");
     }
+    const storedUsername = sessionStorage.getItem("username") || "Guest";
+    setUsername(storedUsername);
 
     const formData = new FormData();
     formData.append("domainId", domain._id);
-    formData.append("user", username);
+    formData.append("user", storedUsername);
     formData.append("content", newPost.content.trim());
 
     if (newPost.imageFile) {
@@ -72,7 +74,9 @@ const Cinematography = () => {
   };
 
   const handleDeletePost = async (postId, postUser) => {
-    if (!postId || username !== postUser) return alert("You can only delete your own posts!");
+    const storedUsername = sessionStorage.getItem("username") || "Guest";
+    setUsername(storedUsername);
+    if (!postId || storedUsername !== postUser) return alert("You can only delete your own posts!");
     if (!window.confirm("Are you sure you want to delete this post?")) return;
 
     try {
