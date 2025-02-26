@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styles from "./Cinematography.module.css";
+import {Link} from "react-router-dom";
 
 const Cinematography = () => {
   const [domain, setDomain] = useState(null);
@@ -116,14 +117,11 @@ const Cinematography = () => {
             {posts.map((post) => (
               <div
                 key={post._id}
-                className={`${styles.postCard} ${
-                  post.copyrightProtected && post.user !== username ? styles.protected : ""
-                }`}
-                title={post.copyrightProtected && post.user !== username ? "This post is copyright protected" : ""}
-              >
+                className={styles.postCard}>
                 <p>
-                  <strong>{post.user}:</strong>{" "}
-                  {post.copyrightProtected && post.user !== username ? "🔒 Protected Content" : post.content}
+                  <strong>
+                    <Link to={`/profile/${post.user}`}>{post.user}</Link>
+                  </strong>: {post.content}
                 </p>
 
                 {post.image && (

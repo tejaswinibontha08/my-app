@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import defaultCover from '../assets/cover.jpeg';
 // import defaultAvatar from '../assets/profile.jpeg';
 import defaultAvatar from '../assets/download.jpg';
@@ -11,11 +12,12 @@ import ISE from './ISE';
 import SettingsAndPrivacy from './SettingsAndPrivacy';
 
 function ProfilePage() {
+  const { username } = useParams();
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const username = sessionStorage.getItem("username"); // No useState needed
+  //const username = sessionStorage.getItem("username"); // No useState needed
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
   const coverContainerRef = useRef(null);
