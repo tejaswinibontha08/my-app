@@ -56,7 +56,43 @@
     margin-bottom: 15px;
     box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.15); /* Soft cinematic glow */
 }
-
+/* Existing styles */
+/* Existing styles */
+.postImage {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+  }
+  
+  /* Blur only on hover */
+  .protectedImage img:hover {
+    filter: blur(5px);
+  }
+  
+  /* Message appears on hover */
+  .protectedImage:hover::after {
+    content: "This is a copyrighted image";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    opacity: 1;
+  }
+  
+  /* Ensure message is hidden by default */
+  .protectedImage::after {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  
 .postImage {
     width: 100%;
     max-height: 500px;

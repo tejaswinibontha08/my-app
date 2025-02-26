@@ -541,6 +541,7 @@ const postSchema = new mongoose.Schema({
   content: { type: String },
   image: { type: String }, // Can store image URL or Base64
   timestamp: { type: Date, default: Date.now },
+  copyrightProtected: { type: Boolean, default: false },
 });
 const Post = mongoose.model("Post", postSchema);
 
@@ -575,7 +576,7 @@ app.get("/api/posts/:domainId", async (req, res) => {
 // Create a New Post (With Image URL or File Upload)
 // Create a New Post
 app.post("/api/posts", upload.single("imageFile"), async (req, res) => {
-  const { domainId, user, content, image } = req.body;
+  const { domainId, user, content, image, copyrightProtected } = req.body;
   let imageData = image;
 
   if (req.file) {
@@ -583,7 +584,7 @@ app.post("/api/posts", upload.single("imageFile"), async (req, res) => {
   }
 
   try {
-    const post = new Post({ domain: domainId, user, content, image: imageData });
+    const post = new Post({ domain: domainId, user, content, image: imageData, copyrightProtected: copyrightProtected === "true" });
     await post.save();
     res.status(201).json({ message: "✅ Post created successfully", post });
   } catch (error) {
