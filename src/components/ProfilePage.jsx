@@ -12,7 +12,7 @@ import ISE from './ISE';
 import SettingsAndPrivacy from './SettingsAndPrivacy';
 
 function ProfilePage() {
-  const { username } = useParams();
+  //const { username1 } = useParams();
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [firstName, setFirstName] = useState("");
@@ -23,31 +23,36 @@ function ProfilePage() {
   const coverContainerRef = useRef(null);
   const coverInputRef = useRef(null);
   const profileInputRef = useRef(null);
+  const { username1 } = useParams();
+const storedUsername = sessionStorage.getItem("username");
+const username = username1 || storedUsername;
+useEffect(() => {
+  console.log("Fetching user data...");
 
-  useEffect(() => {
-    console.log("Fetching user data...");
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/get-user/${username}`);
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/get-user/${username}`);
 
-        if (response.ok) {
-          const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
 
-          if (data._id) {
-            localStorage.setItem("userId", data._id);
-          }
-          setFirstName(data.firstName || "Add Name");
-          setLastName(data.lastName || "");
-        } else {
-          console.error("Error fetching user data");
+        if (data._id) {
+          localStorage.setItem("userId", data._id);
         }
-      } catch (error) {
-        console.error("Network error:", error);
+        setFirstName(data.firstName || "Add Name");
+        setLastName(data.lastName || "");
+      } else {
+        console.error("Error fetching user data");
       }
-    };
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  };
 
+  if (username) {
     fetchUserData();
-  }, [username]); 
+  }
+}, [username]);
 
   const updateProfile = async () => {
     console.log("🔄 Sending update request:", { username, firstName, lastName });

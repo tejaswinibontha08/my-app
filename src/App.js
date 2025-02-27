@@ -43,7 +43,7 @@ function App() {
           <Route path="/domain/filmmusic" element={<FilmMusic />} />
           <Route path ="/Chat" element={<Chat />} />
           <Route path="/components/ProfilePage" element={<ProfilePage />} />
-          <Route path="/profile/:username" element={<ProfilePage />} />
+          <Route path="/profile/:username1" element={<ProfilePage />} />
           <Route path="/components/Navbar" element={<Navbar />} />
         </Routes>
       </Router>
