@@ -24,8 +24,8 @@ function ProfilePage() {
   const coverInputRef = useRef(null);
   const profileInputRef = useRef(null);
   const { username1 } = useParams();
-const storedUsername = sessionStorage.getItem("username");
-const username = username1 || storedUsername;
+  const storedUsername = sessionStorage.getItem("username");
+  const username = username1 || storedUsername;
 useEffect(() => {
   console.log("Fetching user data...");
 

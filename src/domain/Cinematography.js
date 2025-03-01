@@ -194,34 +194,32 @@ const Cinematography = () => {
 
   const handlePostSubmit = async () => {
     if (!domain || !username) return alert("User not logged in!");
-    if (!newPost.content.trim() && !newPost.imageFile && !newPost.image) {
+    if (!newPost.content.trim() && !newPost.file) {
       return alert("Post cannot be empty!");
     }
-
+  
     const storedUsername = sessionStorage.getItem("username") || "Guest";
     setUsername(storedUsername);
-
+  
     const formData = new FormData();
     formData.append("domainId", domain._id);
     formData.append("user", storedUsername);
     formData.append("content", newPost.content.trim());
-    formData.append("copyrightProtected", newPost.copyrightProtected); // ✅ Send flag properly
-
-    if (newPost.imageFile) {
-      formData.append("imageFile", newPost.imageFile);
-    } else if (newPost.image.trim()) {
-      formData.append("image", newPost.image.trim());
+    formData.append("copyrightProtected", newPost.copyrightProtected);
+  
+    if (newPost.file) {
+      formData.append("file", newPost.file);
     }
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/posts", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
+  
       if (response.status === 201) {
         fetchPosts(domain._id);
-        setNewPost({ content: "", image: "", imageFile: null, copyrightProtected: false });
-
+        setNewPost({ content: "", file: null, copyrightProtected: false });
+  
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
@@ -230,7 +228,22 @@ const Cinematography = () => {
       console.error("Error posting:", error);
     }
   };
-
+  
+  // Handle file selection (Image, Video, PDF)
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+  
+    const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif", "video/mp4", "video/webm", "video/ogg", "application/pdf"];
+    
+    if (!allowedTypes.includes(file.type)) {
+      alert("Unsupported file type! Only images, videos, and PDFs are allowed.");
+      return;
+    }
+  
+    setNewPost((prev) => ({ ...prev, file }));
+  };
+  
   const handleDeletePost = async (postId, postUser) => {
     const storedUsername = sessionStorage.getItem("username") || "Guest";
     setUsername(storedUsername);
@@ -243,9 +256,7 @@ const Cinematography = () => {
     } catch (error) {
       console.error("Error deleting post:", error);
     }
-  };
-
-  return (
+  };return (
     <div className={styles.container}>
       {domain && (
         <>
@@ -259,32 +270,44 @@ const Cinematography = () => {
               </li>
             ))}
           </ul>
-
+  
           <h3 className={styles.subTitle}>🌟 Community Posts</h3>
           <div className={styles.postsContainer}>
             {posts.map((post) => (
-              <div
-                key={post._id}
-                className={styles.postCard}>
+              <div key={post._id} className={styles.postCard}>
                 <p>
                   <strong>
                     <Link to={`/profile/${post.user}`}>{post.user}</Link>
                   </strong>: {post.content}
                 </p>
+  
+                {post.file && (
+                  <div
+                    className={post.copyrightProtected && post.user !== username ? styles.protectedFile : ""}
+                    style={{ position: "relative" }}
+                  >
+                    {post.file.includes("application/pdf") ? (
+                       
+                      <iframe
+                        src={post.file}
+                        width="100%"
+                        height="500px"
+                        title="PDF Preview"
+                      ></iframe>
 
-                {post.image && (
-  <div className={post.copyrightProtected && post.user !== username ? styles.protectedImage : ""} style={{ position: "relative" }}>
-    <img
-      src={post.image}
-      alt="Post"
-      className={styles.postImage}
-    />
-  </div>
-)}
-
-
+                    ) : post.file.includes("video/") ? (
+                      <video controls width="100%">
+                        <source src={post.file} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <img src={post.file} alt="Post" className={styles.postImage} />
+                    )}
+                  </div>
+                )}
+  
                 <p className={styles.timestamp}>{new Date(post.timestamp).toLocaleString()}</p>
-
+  
                 {post.user === username && (
                   <button className={styles.deleteButton} onClick={() => handleDeletePost(post._id, post.user)}>
                     🗑 Delete
@@ -293,7 +316,7 @@ const Cinematography = () => {
               </div>
             ))}
           </div>
-
+  
           <h3 className={styles.subTitle}>🎥 Add a Post</h3>
           <textarea
             className={styles.textArea}
@@ -301,21 +324,15 @@ const Cinematography = () => {
             value={newPost.content}
             onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
           />
-          <input
-            className={styles.input}
-            type="text"
-            placeholder="Image URL (optional)"
-            value={newPost.image}
-            onChange={(e) => setNewPost({ ...newPost, image: e.target.value, imageFile: null })}
-          />
+  
           <input
             className={styles.fileInput}
             type="file"
-            accept="image/*"
+            accept="image/*,video/*,.pdf"
             ref={fileInputRef}
-            onChange={(e) => setNewPost({ ...newPost, imageFile: e.target.files[0], image: "" })}
+            onChange={handleFileChange} // Now using the function properly
           />
-
+  
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
@@ -324,7 +341,7 @@ const Cinematography = () => {
             />
             Enable Copyright Protection
           </label>
-
+  
           <button className={styles.postButton} onClick={handlePostSubmit}>
             🎬 Post
           </button>
@@ -332,6 +349,8 @@ const Cinematography = () => {
       )}
     </div>
   );
+  
+  
 };
 
 export default Cinematography;

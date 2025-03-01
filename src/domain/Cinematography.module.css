@@ -66,13 +66,15 @@
   }
   
   /* Blur only on hover */
-  .protectedImage img:hover {
+  
+  .protectedFile:hover {
     filter: blur(5px);
   }
   
+  
   /* Message appears on hover */
-  .protectedImage:hover::after {
-    content: "This is a copyrighted image";
+  .protectedFile:hover::after {
+    content: "This content is copyrighted";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -87,7 +89,7 @@
   }
   
   /* Ensure message is hidden by default */
-  .protectedImage::after {
+  .protectedFile::after {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }

@@ -539,11 +539,14 @@ const postSchema = new mongoose.Schema({
   domain: { type: mongoose.Schema.Types.ObjectId, ref: "Domain", required: true },
   user: { type: String, required: true },
   content: { type: String },
-  image: { type: String }, // Can store image URL or Base64
+  file: { type: String }, // Can store image, PDF, or audio in Base64
+  fileType: { type: String }, // Stores MIME type of file
   timestamp: { type: Date, default: Date.now },
   copyrightProtected: { type: Boolean, default: false },
 });
+
 const Post = mongoose.model("Post", postSchema);
+
 
 app.get("/get-username", async (req, res) => {
   const email = req.query.email;
@@ -575,22 +578,33 @@ app.get("/api/posts/:domainId", async (req, res) => {
 
 // Create a New Post (With Image URL or File Upload)
 // Create a New Post
-app.post("/api/posts", upload.single("imageFile"), async (req, res) => {
-  const { domainId, user, content, image, copyrightProtected } = req.body;
-  let imageData = image;
+app.post("/api/posts", upload.single("file"), async (req, res) => {
+  const { domainId, user, content, copyrightProtected } = req.body;
+  let fileData = null;
+  let fileType = null;
 
   if (req.file) {
-    imageData = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+    fileData = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+    fileType = req.file.mimetype;
   }
 
   try {
-    const post = new Post({ domain: domainId, user, content, image: imageData, copyrightProtected: copyrightProtected === "true" });
+    const post = new Post({
+      domain: domainId,
+      user,
+      content,
+      file: fileData,
+      fileType,
+      copyrightProtected: copyrightProtected === "true",
+    });
+
     await post.save();
     res.status(201).json({ message: "✅ Post created successfully", post });
   } catch (error) {
     res.status(500).json({ message: "❌ Error creating post", error });
   }
 });
+
 
 // *Delete a Post*
 app.delete("/api/posts/:postId", async (req, res) => {
